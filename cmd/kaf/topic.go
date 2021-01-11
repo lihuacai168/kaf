@@ -169,10 +169,11 @@ var lsTopicsCmd = &cobra.Command{
 }
 
 var describeTopicCmd = &cobra.Command{
-	Use:   "describe",
-	Short: "Describe topic",
-	Long:  "Describe a topic. Default values of the configuration are omitted.",
-	Args:  cobra.ExactArgs(1),
+	Use:               "describe",
+	Short:             "Describe topic",
+	Long:              "Describe a topic. Default values of the configuration are omitted.",
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: validTopicArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		admin := getClusterAdmin()
 
@@ -302,9 +303,10 @@ var addConfigCmd = &cobra.Command{
 }
 
 var deleteTopicCmd = &cobra.Command{
-	Use:   "delete TOPIC",
-	Short: "Delete a topic",
-	Args:  cobra.ExactArgs(1),
+	Use:               "delete TOPIC",
+	Short:             "Delete a topic",
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: validTopicArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		admin := getClusterAdmin()
 
