@@ -32,13 +32,22 @@ See the [examples](examples) folder
 ## Shell autocompletion
 Source the completion script in your shell commands file:
 
-Bash
+Bash Linux:
 
-```echo 'source <(kaf completion bash)' >> ~/.bashrc```
+```kaf completion bash > /etc/bash_completion.d/kaf```
+
+Bash MacOS:
+
+```kaf completion bash > /usr/local/etc/bash_completion.d/kaf```
 
 Zsh
 
-```echo 'source <(kaf completion zsh)' >> ~/.zshrc```
+```kaf completion zsh > "${fpath[1]}/_kaf"```
+
+Fish
+
+```kaf completion fish > ~/.config/fish/completions/kaf.fish```
 
 Powershell
+
 ```Invoke-Expression (@(kaf completion powershell) -replace " ''\)$"," ' ')" -join "`n")```

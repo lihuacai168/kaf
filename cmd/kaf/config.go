@@ -49,9 +49,10 @@ var configCurrentContext = &cobra.Command{
 }
 
 var configUseCmd = &cobra.Command{
-	Use:   "use-cluster [NAME]",
-	Short: "Sets the current cluster in the configuration",
-	Args:  cobra.ExactArgs(1),
+	Use:               "use-cluster [NAME]",
+	Short:             "Sets the current cluster in the configuration",
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: validConfigArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
 		if err := cfg.SetCurrentCluster(name); err != nil {
@@ -179,9 +180,10 @@ var configAddClusterCmd = &cobra.Command{
 }
 
 var configRemoveClusterCmd = &cobra.Command{
-	Use:   "remove-cluster [NAME]",
-	Short: "remove cluster",
-	Args:  cobra.ExactArgs(1),
+	Use:               "remove-cluster [NAME]",
+	Short:             "remove cluster",
+	Args:              cobra.ExactArgs(1),
+	ValidArgsFunction: validConfigArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
 
