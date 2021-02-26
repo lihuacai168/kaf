@@ -30,6 +30,7 @@ type Cluster struct {
 	TLS               *TLS     `yaml:"TLS"`
 	SecurityProtocol  string   `yaml:"security-protocol"`
 	SchemaRegistryURL string   `yaml:"schema-registry-url"`
+	Description       string   `yaml:"description"`
 }
 
 type Config struct {

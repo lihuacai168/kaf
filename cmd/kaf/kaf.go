@@ -15,8 +15,8 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/birdayz/kaf/pkg/avro"
-	"github.com/birdayz/kaf/pkg/config"
 	"github.com/birdayz/kaf/pkg/proto"
+	"github.com/lihuacai168/kaf/pkg/config"
 )
 
 var cfgFile string

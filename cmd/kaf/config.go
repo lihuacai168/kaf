@@ -4,18 +4,20 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"text/tabwriter"
 
 	"regexp"
 
 	"github.com/Shopify/sarama"
-	"github.com/birdayz/kaf/pkg/config"
+	"github.com/lihuacai168/kaf/pkg/config"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
 var (
-	flagEhConnString  string
-	flagBrokerVersion string
+	flagEhConnString      string
+	flagBrokerVersion     string
+	flagBrokenDescription string
 )
 
 func init() {
@@ -32,6 +34,7 @@ func init() {
 	configLsCmd.Flags().BoolVar(&noHeaderFlag, "no-headers", false, "Hide table headers")
 	configAddEventhub.Flags().StringVar(&flagEhConnString, "eh-connstring", "", "EventHub ConnectionString")
 	configAddClusterCmd.Flags().StringVar(&flagBrokerVersion, "broker-version", "", fmt.Sprintf("Broker Version. Available Versions: %v", sarama.SupportedVersions))
+	configAddClusterCmd.Flags().StringVar(&flagBrokenDescription, "desc", "", "Description of Brokers")
 }
 
 var configCmd = &cobra.Command{
@@ -70,12 +73,16 @@ var configLsCmd = &cobra.Command{
 	Args:    cobra.NoArgs,
 	Aliases: []string{"ls", "ll", "list"},
 	Run: func(cmd *cobra.Command, args []string) {
+		w := tabwriter.NewWriter(outWriter, tabwriterMinWidth, tabwriterWidth, tabwriterPadding, tabwriterPadChar, tabwriterFlags)
 		if !noHeaderFlag {
-			fmt.Println("NAME")
+			fmt.Fprintf(w, "NAME\tDESCRIPTION\t\n")
 		}
+
 		for _, cluster := range cfg.Clusters {
-			fmt.Println(cluster.Name)
+			fmt.Fprintf(w, "%v\t%v\t\n", cluster.Name, cluster.Description)
 		}
+
+		w.Flush()
 	},
 }
 
@@ -174,6 +181,7 @@ var configAddClusterCmd = &cobra.Command{
 			Brokers:           brokersFlag,
 			SchemaRegistryURL: schemaRegistryURL,
 			Version:           flagBrokerVersion,
+			Description:       flagBrokenDescription,
 		})
 		err := cfg.Write()
 		if err != nil {
