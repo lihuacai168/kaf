@@ -6,6 +6,7 @@ require (
 	github.com/Landoop/schema-registry v0.0.0-20190327143759-50a5701c1891
 	github.com/Shopify/sarama v1.27.2
 	github.com/avast/retry-go v2.4.1+incompatible // indirect
+	github.com/birdayz/kaf v1.4.0
 	github.com/bsm/sarama-cluster v2.1.15+incompatible // indirect
 	github.com/burdiyan/kafkautil v0.0.0-20190131162249-eaf83ed22d5b
 	github.com/facebookgo/ensure v0.0.0-20200202191622-63f1cf65ac4c // indirect

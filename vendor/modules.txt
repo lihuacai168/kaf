@@ -11,6 +11,11 @@ github.com/alecthomas/gometalinter
 github.com/alecthomas/units
 # github.com/avast/retry-go v2.4.1+incompatible
 github.com/avast/retry-go
+# github.com/birdayz/kaf v1.4.0 => github.com/lihuacai168/kaf v1.4.0
+github.com/birdayz/kaf/pkg/avro
+github.com/birdayz/kaf/pkg/config
+github.com/birdayz/kaf/pkg/proto
+github.com/birdayz/kaf/pkg/streams
 # github.com/bsm/sarama-cluster v2.1.15+incompatible
 github.com/bsm/sarama-cluster
 # github.com/burdiyan/kafkautil v0.0.0-20190131162249-eaf83ed22d5b
@@ -168,7 +173,7 @@ github.com/segmentio/kafka-go/protocol/produce
 github.com/segmentio/kafka-go/protocol/saslauthenticate
 github.com/segmentio/kafka-go/protocol/saslhandshake
 github.com/segmentio/kafka-go/sasl
-# github.com/spf13/cobra v1.1.1
+# github.com/spf13/cobra v1.1.2-0.20201229145732-a4ab3fa09e3d
 github.com/spf13/cobra
 # github.com/spf13/pflag v1.0.5
 github.com/spf13/pflag
