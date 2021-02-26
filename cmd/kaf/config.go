@@ -53,6 +53,7 @@ var configUseCmd = &cobra.Command{
 	Short:             "Sets the current cluster in the configuration",
 	Args:              cobra.ExactArgs(1),
 	ValidArgsFunction: validConfigArgs,
+	Aliases:           []string{"use"},
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
 		if err := cfg.SetCurrentCluster(name); err != nil {
@@ -64,9 +65,10 @@ var configUseCmd = &cobra.Command{
 }
 
 var configLsCmd = &cobra.Command{
-	Use:   "get-clusters",
-	Short: "Display clusters in the configuration file",
-	Args:  cobra.NoArgs,
+	Use:     "get-clusters",
+	Short:   "Display clusters in the configuration file",
+	Args:    cobra.NoArgs,
+	Aliases: []string{"ls", "ll", "list"},
 	Run: func(cmd *cobra.Command, args []string) {
 		if !noHeaderFlag {
 			fmt.Println("NAME")
@@ -117,8 +119,9 @@ var configAddEventhub = &cobra.Command{
 }
 
 var configSelectCluster = &cobra.Command{
-	Use:   "select-cluster",
-	Short: "Interactively select a cluster",
+	Use:     "select-cluster",
+	Short:   "Interactively select a cluster",
+	Aliases: []string{"select"},
 	Run: func(cmd *cobra.Command, args []string) {
 		var clusterNames []string
 		for _, cluster := range cfg.Clusters {
@@ -154,9 +157,10 @@ var configSelectCluster = &cobra.Command{
 }
 
 var configAddClusterCmd = &cobra.Command{
-	Use:   "add-cluster [NAME]",
-	Short: "Add cluster",
-	Args:  cobra.ExactArgs(1),
+	Use:     "add-cluster [NAME]",
+	Short:   "Add cluster",
+	Args:    cobra.ExactArgs(1),
+	Aliases: []string{"add"},
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
 		for _, cluster := range cfg.Clusters {
@@ -184,6 +188,7 @@ var configRemoveClusterCmd = &cobra.Command{
 	Short:             "remove cluster",
 	Args:              cobra.ExactArgs(1),
 	ValidArgsFunction: validConfigArgs,
+	Aliases:           []string{"rm", "del", "delete", "remove"},
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
 
