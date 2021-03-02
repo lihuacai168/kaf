@@ -75,14 +75,14 @@ var configLsCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		w := tabwriter.NewWriter(outWriter, tabwriterMinWidth, tabwriterWidth, tabwriterPadding, tabwriterPadChar, tabwriterFlags)
 		if !noHeaderFlag {
-			fmt.Fprintf(w, "NAME\tDESCRIPTION\t\n")
+			fmt.Fprintf(w, "NAME\tBROKERS\tDESCRIPTION\t\n")
 		}
 
 		for _, cluster := range cfg.Clusters {
-			fmt.Fprintf(w, "%v\t%v\t\n", cluster.Name, cluster.Description)
+			fmt.Fprintf(w, "%v\t%s\t%v\t\n", cluster.Name, strings.Join(cluster.Brokers, ","), cluster.Description)
 		}
-
 		w.Flush()
+		fmt.Printf("\nCurrentCluster: %v\n", cfg.CurrentCluster)
 	},
 }
 
